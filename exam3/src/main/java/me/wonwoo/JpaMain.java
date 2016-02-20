@@ -1,6 +1,7 @@
-package me.wonwoo.exam3;
+package me.wonwoo;
 
-import me.wonwoo.exam2.model.Member;
+
+import me.wonwoo.model.Member;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,7 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 /**
  * Created by wonwoo on 2016. 2. 20..

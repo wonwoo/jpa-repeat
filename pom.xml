@@ -6,7 +6,14 @@
 
     <groupId>me.jpa.repeat</groupId>
     <artifactId>jpa-repeat</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>exam2</module>
+        <module>exam3</module>
+        <module>exam4</module>
+        <module>exam5</module>
+    </modules>
 
     <dependencies>
         <dependency>
