@@ -13,14 +13,30 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Member {
+public class Member5 {
 
     @Id
     @Column(name = "MEMBER_ID")
     private String id;
     private String username;
 
+    public Member5(String id, String username){
+        this.id = id;
+        this.username = username;
+    }
+
+
+    //연관관계의 주인
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
     private Team team;
+
+    public void setTeam(Team team){
+        //기존 연관관계 제거
+        if(this.team != null){
+            this.team.getMembers().remove(this);
+        }
+        this.team = team;
+        team.getMembers().add(this);
+    }
 }
