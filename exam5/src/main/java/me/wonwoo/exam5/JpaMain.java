@@ -17,19 +17,20 @@ public class JpaMain {
 
     public static void main(String[] args) {
 
+        try {
+            persist();
+            find();
+            queryLogicJoin();
+            update();
 
-        persist();
-        find();
-        queryLogicJoin();
-        update();
-
-        deleteRelation();
-        biDirection();
-        test순수한객체_양방향();
-        test순수한객체_양방향1();
-        testORM_양방향();
-        entityManagerFactory.close();
-
+            deleteRelation();
+            biDirection();
+            test순수한객체_양방향();
+            test순수한객체_양방향1();
+            testORM_양방향();
+        }finally {
+            entityManagerFactory.close();
+        }
     }
 
 
