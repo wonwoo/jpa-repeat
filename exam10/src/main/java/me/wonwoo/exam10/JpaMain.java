@@ -4,9 +4,10 @@ import me.wonwoo.exam10.model.Member;
 import me.wonwoo.exam10.model.Team;
 
 import javax.persistence.*;
-import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.joining;
+import java.util.List;
+
+import static java.util.stream.Collectors.*;
 
 /**
  * Created by wonwoo on 2016. 4. 24..
@@ -25,7 +26,6 @@ public class JpaMain {
     try {
       transaction.begin(); // 트랜잭션 시작
       save(entityManager);
-//      saveTeam(entityManager);
       find(entityManager);
       transaction.commit();
     } catch (Exception e) {
@@ -40,9 +40,17 @@ public class JpaMain {
 
   private static void find(EntityManager entityManager) {
     //객체를 탐색하는 것이다.
+    TypedQuery<Member> query =
+      entityManager.createQuery("select m from Member m", Member.class);
+    System.out.println(
+      query.getResultList()
+        .stream()
+      .map(i -> i.toString())
+      .collect(joining("\n"))
+    );
+
     TypedQuery<Member> memberQuery =
       entityManager.createQuery("select m from Member m inner join m.team t where t.id = 1", Member.class);
-
     String str = memberQuery.getResultList()
       .stream()
       .map(i -> i.toString())
@@ -86,8 +94,6 @@ public class JpaMain {
     member2.setName("kevin");
     member2.setEmail("kevin@test.com");
     member2.setTeam(team1);
-
-
 
     entityManager.persist(team);
     entityManager.persist(team1);
