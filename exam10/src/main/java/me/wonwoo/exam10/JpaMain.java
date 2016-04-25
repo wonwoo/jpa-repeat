@@ -1,10 +1,10 @@
 package me.wonwoo.exam10;
 
+import me.wonwoo.exam10.dto.MemberDTO;
 import me.wonwoo.exam10.model.Member;
 import me.wonwoo.exam10.model.Team;
 
 import javax.persistence.*;
-
 import java.util.List;
 
 import static java.util.stream.Collectors.*;
@@ -56,6 +56,49 @@ public class JpaMain {
       .map(i -> i.toString())
       .collect(joining("\n"));
     System.out.println(str);
+
+
+    TypedQuery<Member> typedQuery = entityManager.createQuery("select m from Member m", Member.class);
+    System.out.println(typedQuery.getResultList()
+      .stream()
+      .map(i -> i.toString())
+      .collect(joining("\n"))
+    );
+
+    Query queryObject = entityManager.createQuery("select m.name, m.email from Member m");
+    List<Object[]> result = queryObject.getResultList();
+    result.stream().forEach(i -> {
+      System.out.println(i[0]);
+      System.out.println(i[1]);
+    });
+
+    TypedQuery<Member> nameTypedQuery = entityManager.createQuery("select m from Member m where m.name = :name", Member.class);
+    nameTypedQuery.setParameter("name", "wonwoo");
+    nameTypedQuery.getResultList().stream().forEach(System.out::println);
+
+    TypedQuery<Member> positionTypedQuery = entityManager.createQuery("select m from Member m where m.name = ?1", Member.class);
+    positionTypedQuery.setParameter(1, "wonwoo");
+    positionTypedQuery.getResultList().stream().forEach(System.out::println);
+
+
+    TypedQuery<MemberDTO> queryDto = entityManager.createQuery(
+      "select new me.wonwoo.exam10.dto.MemberDTO(m.name, m.email) from Member m", MemberDTO.class
+    );
+    System.out.println(queryDto.getResultList()
+      .stream()
+      .map(i -> i.toString())
+      .collect(joining("\n")));
+
+    TypedQuery<Member> pageQuery = entityManager.createQuery(
+      "select m from Member m ORDER BY m.name desc", Member.class
+    );
+    pageQuery.setFirstResult(1);
+    pageQuery.setMaxResults(2);
+    System.out.println(pageQuery.getResultList()
+      .stream()
+      .map(i -> i.toString())
+      .collect(joining("\n")));
+
   }
 
   private static void saveTeam(EntityManager entityManager) {
