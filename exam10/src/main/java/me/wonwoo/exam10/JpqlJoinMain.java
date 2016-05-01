@@ -45,12 +45,12 @@ public class JpqlJoinMain {
   }
 
   private static void crossJoin(EntityManager entityManager) {
-String query = "select m from Member m , Team t where t.name = m.name";
-List<Member> members = entityManager.createQuery(query,Member.class)
-  .getResultList();
-System.out.println(
-  members.stream().map(i -> i.toString()).collect(joining("\n"))
-);
+    String query = "select m from Member m , Team t where t.name = m.name";
+    List<Member> members = entityManager.createQuery(query,Member.class)
+      .getResultList();
+    System.out.println(
+      members.stream().map(i -> i.toString()).collect(joining("\n"))
+    );
   }
 
   private static void collectionJoin(EntityManager entityManager) {
