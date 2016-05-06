@@ -23,4 +23,14 @@ public class Member {
   @JoinColumn(name = "TEAM_ID")
   private Team team;
 
+
+  //연관관계 메소드
+  public void setTeam(Team team){
+    if(this.team != null){
+      this.team.getMembers().remove(this);
+    }
+    this.team = team;
+    team.getMembers().add(this);
+  }
+
 }
