@@ -15,6 +15,7 @@
         <module>exam5</module>
         <module>exam6</module>
         <module>exam10</module>
+        <module>exam8</module>
     </modules>
 
     <dependencies>
