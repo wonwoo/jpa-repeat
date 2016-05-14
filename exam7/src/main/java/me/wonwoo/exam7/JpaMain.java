@@ -1,4 +1,8 @@
-package me.wonwoo.exam9;
+package me.wonwoo.exam7;
+
+
+import me.wonwoo.exam7.entity.embedded.ParentId;
+import me.wonwoo.exam7.entity.idclass.Parent;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,6 +24,9 @@ public class JpaMain {
 
     try {
       transaction.begin(); // 트랜잭션 시작
+      save(entityManager);
+
+      find(entityManager);
       transaction.commit();
     } catch (Exception e) {
       System.out.println(e);
@@ -29,5 +36,21 @@ public class JpaMain {
     }
 
     entityManagerFactory.close();
+  }
+
+  private static void find(EntityManager entityManager) {
+    ParentId parentId = new ParentId();
+    parentId.setId1("id1");
+    parentId.setId2("id2");
+    Parent parent = entityManager.find(Parent.class, parentId);
+    System.out.println(parent);
+  }
+
+  public static void save(EntityManager entityManager) {
+    Parent parent = new Parent();
+    parent.setId1("id1");
+    parent.setId2("id2");
+    parent.setName("name");
+    entityManager.persist(parent);
   }
 }

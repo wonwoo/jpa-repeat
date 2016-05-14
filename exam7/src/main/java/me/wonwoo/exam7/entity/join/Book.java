@@ -1,7 +1,6 @@
-package me.wonwoo.exam9.entity.table;
+package me.wonwoo.exam7.entity.join;
 
 import lombok.Data;
-import me.wonwoo.exam9.entity.join.Item;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -12,6 +11,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
  */
 @Entity
 @Data
+@DiscriminatorValue("B")
+@PrimaryKeyJoinColumn(name = "BOOK_ID")
 public class Book extends Item {
 
   private String author;

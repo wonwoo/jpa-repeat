@@ -1,4 +1,4 @@
-package me.wonwoo.exam9.entity.mapperd;
+package me.wonwoo.exam7.entity.mapperd;
 
 import lombok.Data;
 

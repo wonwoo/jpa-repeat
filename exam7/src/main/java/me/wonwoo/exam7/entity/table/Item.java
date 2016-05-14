@@ -1,4 +1,4 @@
-package me.wonwoo.exam9.entity.table;
+package me.wonwoo.exam7.entity.table;
 
 import lombok.Data;
 

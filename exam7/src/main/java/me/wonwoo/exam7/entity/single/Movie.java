@@ -1,7 +1,6 @@
-package me.wonwoo.exam9.entity.table;
+package me.wonwoo.exam7.entity.single;
 
 import lombok.Data;
-import me.wonwoo.exam9.entity.join.Item;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -10,7 +9,11 @@ import javax.persistence.Entity;
  * Created by wonwoo on 2016. 5. 14..
  */
 @Entity
+@DiscriminatorValue("M")
 @Data
-public class Album extends Item {
-  private String artist;
+public class Movie extends Item {
+  private String director;
+
+  private String actor;
+
 }

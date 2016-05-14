@@ -1,4 +1,4 @@
-package me.wonwoo.exam9.entity.join;
+package me.wonwoo.exam7.entity.join;
 
 import lombok.Data;
 

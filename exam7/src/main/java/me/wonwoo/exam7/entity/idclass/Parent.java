@@ -1,7 +1,7 @@
-package me.wonwoo.exam9.entity.idclass;
+package me.wonwoo.exam7.entity.idclass;
 
 import lombok.Data;
-import me.wonwoo.exam9.entity.embedded.ParentId;
+import me.wonwoo.exam7.entity.embedded.ParentId;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

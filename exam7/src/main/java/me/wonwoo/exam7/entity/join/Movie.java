@@ -1,4 +1,4 @@
-package me.wonwoo.exam9.entity.table;
+package me.wonwoo.exam7.entity.join;
 
 import lombok.Data;
 
@@ -9,6 +9,7 @@ import javax.persistence.Entity;
  * Created by wonwoo on 2016. 5. 14..
  */
 @Entity
+@DiscriminatorValue("M")
 @Data
 public class Movie extends Item {
   private String director;

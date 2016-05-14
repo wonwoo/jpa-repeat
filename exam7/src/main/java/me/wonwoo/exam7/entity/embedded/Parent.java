@@ -1,4 +1,4 @@
-package me.wonwoo.exam9.entity.embedded;
+package me.wonwoo.exam7.entity.embedded;
 
 import lombok.Data;
 
