@@ -18,6 +18,7 @@
         <module>exam8</module>
         <module>exam7</module>
         <module>exam16</module>
+        <module>exam14</module>
     </modules>
 
     <dependencies>
