@@ -20,39 +20,39 @@ public class JpaMain {
 
     public static void main(String[] args) {
 //        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jpabook");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+//        EntityManager entityManager = entityManagerFactory.createEntityManager();
+//
+//        EntityTransaction transaction = entityManager.getTransaction();
+//
+//        try {
+//            transaction.begin(); // 트랜잭션 시작
+//            persist(entityManager);
+//            update(entityManager);
+//            remove(entityManager);
+//            transaction.commit();
+//        } catch (Exception e) {
+//            transaction.rollback();
+//        } finally {
+//            entityManager.close();
+//        }
 
-        EntityTransaction transaction = entityManager.getTransaction();
-
-        try {
-            transaction.begin(); // 트랜잭션 시작
-            persist(entityManager);
-            update(entityManager);
-            remove(entityManager);
-            transaction.commit();
-        } catch (Exception e) {
-            transaction.rollback();
-        } finally {
-            entityManager.close();
-        }
-
-        print();
+//        print();
 
         ///////***********************************//////////
 
-        EntityManager entityManager2 = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction2 = entityManager2.getTransaction();
-        try {
-            transaction2.begin(); // 트랜잭션 시작
-            detached(entityManager2);
-            transaction2.commit();
-        } catch (Exception e) {
-            transaction2.rollback();
-        } finally {
-            entityManager2.close();
-        }
-
-        print();
+//        EntityManager entityManager2 = entityManagerFactory.createEntityManager();
+//        EntityTransaction transaction2 = entityManager2.getTransaction();
+//        try {
+//            transaction2.begin(); // 트랜잭션 시작
+//            detached(entityManager2);
+//            transaction2.commit();
+//        } catch (Exception e) {
+//            transaction2.rollback();
+//        } finally {
+//            entityManager2.close();
+//        }
+//
+//        print();
 
 
         Member member = createMember("id4", "회원B", 31);
@@ -99,8 +99,6 @@ public class JpaMain {
         } finally {
             entityManager.close();
         }
-
-
     }
 
 
@@ -108,8 +106,8 @@ public class JpaMain {
         Member member3 = new Member("Id3", "회원A", 40);
         entityManager.persist(member3);
         entityManager.detach(member3); // 준영속으로 전환
-//        entityManager.clear();   //모든 엔티티를 준영속 전환
-
+    //    entityManager.clear();   //모든 엔티티를 준영속 전환
+    //    entityManager.close(); // 영속성 컨텍스트 종료
     }
 
     //대상을 삭제 하려면 엔티티를 조회해야 된다.
