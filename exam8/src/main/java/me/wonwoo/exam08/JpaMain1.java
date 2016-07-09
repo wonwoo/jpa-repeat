@@ -25,26 +25,38 @@ public class JpaMain1 {
       transaction.begin(); // 트랜잭션 시작
 //      saveNoCascade(entityManager);
 //      saveWithCascade(entityManager);
-      deleteNoCascade(entityManager);
+//      deleteNoCascade(entityManager);
+//      deleteWithCascade(entityManager);
+      deleteOrphan(entityManager);
       transaction.commit();
     } catch (Exception e) {
       System.out.println(e);
       transaction.rollback();
     } finally {
+
       entityManager.close();
     }
     entityManagerFactory.close();
   }
 
+  private static void deleteOrphan(EntityManager entityManager){
+    Parent parent = entityManager.find(Parent.class, 1L);
+    parent.getChildren().remove(0);
+  }
+
   private static void deleteNoCascade(EntityManager entityManager){
     Parent parent = entityManager.find(Parent.class, 1L);
-//    Child child1 = entityManager.find(Child.class, 2L);
-//    Child child2 = entityManager.find(Child.class, 3L);
+    Child child1 = entityManager.find(Child.class, 2L);
+    Child child2 = entityManager.find(Child.class, 3L);
 
-//    entityManager.remove(child1);
-//    entityManager.remove(child2);
+    entityManager.remove(child1);
+    entityManager.remove(child2);
     entityManager.remove(parent);
+  }
 
+  private static void deleteWithCascade(EntityManager entityManager){
+    Parent parent = entityManager.find(Parent.class, 1L);
+    entityManager.remove(parent);
   }
 
   private static void saveNoCascade(EntityManager entityManager){
@@ -53,12 +65,10 @@ public class JpaMain1 {
 
     Child child1 = new Child();
     child1.setParent(parent);
-    parent.getChildren().add(child1);
     entityManager.persist(child1);
 
     Child child2 = new Child();
     child2.setParent(parent);
-    parent.getChildren().add(child2);
     entityManager.persist(child2);
   }
   private static void saveWithCascade(EntityManager entityManager){

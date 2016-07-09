@@ -1,6 +1,8 @@
 package me.wonwoo.exam08.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -9,11 +11,13 @@ import javax.persistence.*;
  */
 @Entity
 @Data
+@ToString(exclude = "parent")
 public class Child {
 
   @Id @GeneratedValue
   private Long ig;
 
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  @ManyToOne
+  @JoinColumn
   private Parent parent;
 }

@@ -1,6 +1,8 @@
 package me.wonwoo.exam08.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,11 +13,22 @@ import java.util.List;
  */
 @Entity
 @Data
+@ToString(exclude = "children")
 public class Parent {
 
-  @Id @GeneratedValue
+  @Id
+  @GeneratedValue
   private Long id;
 
-  @OneToMany(mappedBy = "parent", cascade = CascadeType.PERSIST)
+//  @OneToMany(mappedBy = "parent")
+//  private List<Child> children = new ArrayList<>();
+
+  @OneToMany(mappedBy = "parent", orphanRemoval = true)
   private List<Child> children = new ArrayList<>();
+
+//  @OneToMany(mappedBy = "parent" ,cascade = CascadeType.PERSIST)
+//  private List<Child> children = new ArrayList<>();
+
+//  @OneToMany(mappedBy = "parent" ,cascade = CascadeType.REMOVE)
+//  private List<Child> children = new ArrayList<>();
 }
